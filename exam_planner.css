@@ -1,0 +1,887 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top, #0f172a, #020617);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: #0b1220;
+            margin-bottom: 30px;
+            font-family: "https://fonts.googleapis.com/css2?family=Playwrite+IN+Guides&display=swap";
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background-image: linear-gradient(to right, #18e01c, #e46916);
+            background-clip: text;
+            -webkit-background-clip: text; 
+            color: transparent;
+            -webkit-text-fill-color: transparent; 
+            background-color: #f3ec78;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            color: grey;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .input-section {
+            margin-bottom: 20px;
+        }
+
+        .exam-entry {
+            border: 2px solid #6b6c6a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #ffffff;
+        }
+
+        .exam-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9em;
+        }
+
+        input, select, textarea {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .topics-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #d0d0d0;
+        }
+
+        .topics-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .topics-header h4 {
+            color: #667eea;
+            font-size: 1em;
+        }
+
+        .topic-entry {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .topic-entry input {
+            flex: 1;
+        }
+
+        .topic-list {
+            margin-top: 10px;
+        }
+
+        .topic-tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px 5px 5px 0;
+            font-size: 0.9em;
+            position: relative;
+            padding-right: 35px;
+        }
+
+        .topic-tag .remove-topic {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8em;
+            line-height: 1;
+            padding: 0;
+        }
+
+        .topic-tag .remove-topic:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Time Preferences Section */
+        .time-preferences {
+            background: #f4de9e;
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .time-preferences h3 {
+            color: #0c0c0c;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .time-slot-settings {
+            display: grid;
+            gap: 15px;
+        }
+
+        .time-slot-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            display: grid;
+            grid-template-columns: auto 1fr 1fr auto;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .time-slot-item label {
+            margin: 0;
+            min-width: 80px;
+        }
+
+        .time-inputs {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .time-inputs input[type="time"] {
+            padding: 8px 12px;
+            min-width: 120px;
+        }
+
+        .time-inputs span {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .btn-remove-slot {
+            background: #dc3545;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+
+        .btn-remove-slot:hover {
+            background: #c82333;
+        }
+
+        .btn-add-time-slot {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .btn-add-time-slot:hover {
+            background: #218838;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-add-topic {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.9em;
+        }
+
+        .btn-add-topic:hover {
+            background: #5568d3;
+        }
+
+        .btn-remove {
+            background: #f44336;
+            color: white;
+            padding: 12px 20px;
+        }
+
+        .btn-remove:hover {
+            background: #da190b;
+        }
+
+        .btn-generate {
+            background: #667eea;
+            color: white;
+            width: 100%;
+            font-size: 1.1em;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-generate:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .schedule {
+            display: none;
+        }
+
+        .schedule.show {
+            display: block;
+        }
+
+        .schedule-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .schedule-header h2 {
+            margin-bottom: 10px;
+        }
+
+        .subject-plan {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .subject-plan h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .time-slot {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-slot-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .time-slot-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .time-badge {
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .duration-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .topic-focus {
+            color: #666;
+            font-style: italic;
+            margin-top: 8px;
+            padding-left: 15px;
+            border-left: 3px solid #667eea;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .helper-text {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Timer Styles */
+        .timer-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .timer-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .timer-header h2 {
+            margin-bottom: 10px;
+            font-size: 1.8em;
+        }
+
+        .timer-header p {
+            opacity: 0.9;
+            font-size: 1em;
+        }
+
+        .timer-display {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .timer-clock {
+            font-size: 4em;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .timer-status {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .current-session-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .current-session-info h4 {
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .current-session-info p {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .timer-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            min-width: 140px;
+        }
+
+        .timer-btn-start {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .timer-btn-start:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .timer-btn-pause {
+            background: #ff9800;
+            color: white;
+        }
+
+        .timer-btn-pause:hover {
+            background: #fb8c00;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+        }
+
+        .timer-btn-stop {
+            background: #f44336;
+            color: white;
+        }
+
+        .timer-btn-stop:hover {
+            background: #e53935;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.4);
+        }
+
+        .timer-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .session-selector {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .session-selector h4 {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .session-selector select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: 600;
+        }
+
+        .session-selector select option {
+            background: #667eea;
+            color: white;
+        }
+
+        .timer-stats-mini {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .timer-stat-mini {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .timer-stat-mini-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .timer-stat-mini-label {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .timer-clock {
+                font-size: 3em;
+            }
+
+            .timer-controls {
+                flex-direction: column;
+            }
+
+            .timer-btn {
+                width: 100%;
+            }
+
+            .timer-stats-mini {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Analytics Styles */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .tab:hover {
+            color: #667eea;
+        }
+
+        .tab.active {
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .metric-card h4 {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .metric-subtitle {
+            color: #999;
+            font-size: 0.85em;
+        }
+
+        .progress-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .progress-bar-container {
+            background: #f0f0f0;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            transition: width 1s ease;
+        }
+
+        .topic-progress {
+            margin-bottom: 20px;
+        }
+
+        .topic-progress-item {
+            margin-bottom: 15px;
+        }
+
+        .topic-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .efficiency-indicator {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .efficiency-high {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .efficiency-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .efficiency-low {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .recommendation-card {
+            background: #f8f9fa;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .recommendation-card h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .recommendation-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .session-log {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .session-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .session-item:last-child {
+            border-bottom: none;
+        }
+
+        .session-info {
+            flex: 1;
+        }
+
+        .session-date {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .session-details {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .session-status {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-missed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-upcoming {
+            background: #cfe2ff;
+            color: #084298;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .chart-placeholder {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            color: #666;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .exam-header {
+                grid-template-columns: 1fr;
+            }
+
+            .time-slot-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .time-slot-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .time-slot-item {
+                grid-template-columns: 1fr;
+            }
+
+            .time-inputs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+/* Additional responsive adjustments for smaller screens */
+@media (max-width: 900px) {
+    .container { max-width: 100%; padding: 12px; }
+    .card { padding: 18px; }
+    .exam-header { grid-template-columns: 1fr; gap: 12px; }
+    .time-slot-item { grid-template-columns: 1fr; gap: 12px; }
+    .time-slot-item label { min-width: auto; }
+    .btn-add-time-slot, .btn-generate, .btn-add-topic, .btn-remove, button.timer-btn { width: 100%; }
+    .topic-entry { flex-direction: column; align-items: stretch; }
+    .topic-entry .btn-add-topic { width: auto; }
+    .tabs { flex-wrap: wrap; }
+}
+
+@media (max-width: 420px) {
+    body { padding: 12px; }
+    .card { padding: 14px; }
+    .header h1 { font-size: 1.6em; }
+    .timer-clock { font-size: 2.2em; }
+    .timer-btn { padding: 12px; min-width: 0; }
+    .time-inputs input[type="time"] { min-width: auto; width: 100%; }
+    .topic-tag { padding: 6px 10px; font-size: 0.85em; }
+    .chart-placeholder { height: 180px; }
+}

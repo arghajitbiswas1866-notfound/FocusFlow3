@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Study Analytics</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="analytics.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>📈 Study Analytics</h1>
+
+    <!-- SUMMARY CARDS -->
+    <div class="grid">
+      <div class="card">
+        <div class="label">Total Hours</div>
+        <div class="value" id="totalHours">0</div>
+      </div>
+      <div class="card">
+        <div class="label">Total Sessions</div>
+        <div class="value" id="totalSessions">0</div>
+      </div>
+      <div class="card">
+        <div class="label">Avg Session (min)</div>
+        <div class="value" id="avgSession">0</div>
+      </div>
+      <div class="card">
+        <div class="label">Best Streak (days)</div>
+        <div class="value" id="bestStreak">0</div>
+      </div>
+    </div>
+
+    <!-- WEEKLY -->
+    <div class="overview-grid">
+      <div class="overview-card">
+        <h3>This Week</h3>
+        <canvas id="weeklyData"></canvas>
+      </div>
+
+      <div class="overview-card">
+        <h3>By Subject</h3>
+        <canvas id="weeklySubjectData"></canvas>
+      </div>
+    </div>
+
+    <!-- MONTHLY -->
+    <h2>📊 Monthly Progress</h2>
+    <div class="chart-card">
+      <canvas id="monthlyData"></canvas>
+    </div>
+
+    <!-- YEARLY -->
+    <h2>📈 Yearly Progress</h2>
+    <div class="chart-card">
+      <canvas id="yearlyData"></canvas>
+    </div>
+
+  </div>
+  <!-- API Configuration -->
+  <script src="api-config.js" defer></script>
+  <!-- DATA BRAIN (must load FIRST) -->
+  <script src="analytics-main.js" defer></script>
+  <!-- Chart library required by analytics.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+
+  <!-- PAGE LOGIC -->
+  <script src="analytics.js" defer></script>
+  
+
+</body>
+
+</html>

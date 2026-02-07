@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Playground</title>
+  <link rel="stylesheet" href="analytics.css">
+  <style>
+    .pg-controls{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+    textarea.json-input{width:100%;height:120px;font-family:monospace;padding:10px;border-radius:8px}
+    .pg-list{margin-top:12px}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧪 Playground</h1>
+
+    <div class="pg-controls">
+      <input id="pgName" placeholder="Name (optional)" />
+      <button id="pgCreate">Create</button>
+      <button id="pgRefresh">Refresh</button>
+      <span id="pgMsg" class="small"></span>
+    </div>
+
+    <textarea id="pgData" class="json-input" placeholder='Paste JSON here, e.g. { "foo": 1 }'></textarea>
+
+    <div id="pgList" class="pg-list">No items yet</div>
+  </div>
+
+  <script src="api-config.js" defer></script>
+  <script src="playground.js" defer></script>
+</body>
+</html>

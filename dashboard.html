@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FocusFlow</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+  <header>
+  <div id="clock"></div>
+  <button id="themeToggle" class="theme-toggle" data-theme-toggle aria-pressed="false" title="Toggle theme">🌙</button>
+  </header>
+
+  <main>
+
+    <!-- RIGHT -->
+  <div class="right-panel">
+
+    <div class="global-box">
+      <div class="date" id="date"></div>
+      <div class="total" id="globalTimer">00:00:00</div>
+    </div>
+
+    <div id="subjects"></div>
+
+  </div>
+
+<button class="add-btn" onclick="addSubject()">+</button>
+
+
+    <!-- calender -->
+     <div class="container">
+    <div class="calendar-box">
+      <h3>Study Streak</h3>
+      <div class="calendar" id="calendar"></div>
+      <p class="hint">Streak increases automatically as you stay on the site</p>
+    </div>
+  </div>
+   
+    
+
+  </main>
+
+  <footer>
+    <button id="home"><ion-icon name="home-outline" class="ionicons"></ion-icon> Home</button>
+    <button id="examPlanner"><ion-icon name="calendar-outline" class="ionicons"></ion-icon> Planner</button>
+    <button id="analytics"><ion-icon name="analytics-outline" class="ionicons"></ion-icon> Analytics</button>
+    <button id="profile" class="profile-btn"><ion-icon name="person-circle-outline" class="ionicons"></ion-icon> <span id="profileLabel">Profile</span></button>
+  </footer>
+
+  <div id="profileDropdown" class="profile-dropdown hidden" aria-hidden="true">
+    <div class="profile-info">
+      <div id="profileName">Guest</div>
+      <div id="profileEmail"></div>
+    </div>
+    <div class="profile-actions">
+      <button id="signOut" class="danger hidden">Sign out</button>
+      <button id="goSignIn" class="primary">Sign in</button>
+    </div>
+  </div>
+
+  <script src="api-config.js" defer></script>
+  <script src="theme.js" defer></script>
+  <script src="dashboard.js" defer></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

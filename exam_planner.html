@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusFlow - Smart Study Planner</title>
+    <link rel="stylesheet" href="exam_planner.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+IN+Guides&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> Study Planner</h1>
+            <p>Create your personalized study schedule based on your exam dates and topics</p>
+        </div>
+
+        <div class="card">
+            <!-- Time Preferences Section -->
+            <div class="time-preferences">
+                <h3>🕐 Your Study Time Preferences</h3>
+                <p class="helper-text" style="margin-bottom: 15px;">Set your preferred study time slots. These will be used to schedule your study sessions.</p>
+                
+                <div class="time-slot-settings" id="timeSlotSettings">
+                    <div class="time-slot-item">
+                        <label>Slot 1:</label>
+                        <div class="time-inputs">
+                            <input type="time" class="start-time" value="09:00">
+                            <span>to</span>
+                            <input type="time" class="end-time" value="11:00">
+                        </div>
+                        <span class="duration-display">2 hr</span>
+                        <button class="btn-remove-slot" onclick="removeTimeSlot(this)" style="visibility: hidden;">Remove</button>
+                    </div>
+                    <div class="time-slot-item">
+                        <label>Slot 2:</label>
+                        <div class="time-inputs">
+                            <input type="time" class="start-time" value="14:00">
+                            <span>to</span>
+                            <input type="time" class="end-time" value="16:00">
+                        </div>
+                        <span class="duration-display">2 hr</span>
+                        <button class="btn-remove-slot" onclick="removeTimeSlot(this)">Remove</button>
+                    </div>
+                    <div class="time-slot-item">
+                        <label>Slot 3:</label>
+                        <div class="time-inputs">
+                            <input type="time" class="start-time" value="19:00">
+                            <span>to</span>
+                            <input type="time" class="end-time" value="21:00">
+                        </div>
+                        <span class="duration-display">2 hr</span>
+                        <button class="btn-remove-slot" onclick="removeTimeSlot(this)">Remove</button>
+                    </div>
+                </div>
+                
+                <button class="btn-add-time-slot" onclick="addTimeSlot()">+ Add Time Slot</button>
+            </div>
+
+            <h2 style="margin-bottom: 20px; color: #333;">Enter Your Exam</h2>
+            
+            <div id="examsContainer">
+                <div class="exam-entry" data-exam-id="0">
+                    <div class="exam-header">
+                        <div class="form-group">
+                            <label>Exam Name</label>
+                            <input type="text" class="subject-name" placeholder="e.g., Mathematics" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Exam Date</label>
+                            <input type="date" class="exam-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Difficulty</label>
+                            <select class="difficulty">
+                                <option value="easy">Easy</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="topics-section">
+                        <div class="topics-header">
+                            <h4>📝 Topics to Cover</h4>
+                        </div>
+                        <div class="topic-entry">
+                            <input type="text" class="topic-input" placeholder="Enter a topic (e.g., Calculus, Algebra)" onkeypress="handleTopicEnter(event, this)">
+                            <button class="btn-add-topic" onclick="addTopic(this)">Add Topic</button>
+                        </div>
+                        <div class="helper-text">Add specific topics or chapters you need to study for this subject</div>
+                        <div class="topic-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-generate" onclick="generateSchedule()">Generate Study Plan</button>
+        </div>
+
+        <div class="card schedule" id="scheduleCard">
+            <div class="schedule-header">
+                <h2>📅 Your Personalized Study Schedule</h2>
+                <p>Follow this plan to stay on track for your exams</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('schedule')">📅 Schedule</button>
+                <button class="tab" onclick="switchTab('analytics')">📊 Analytics</button>
+            </div>
+
+            <!-- Schedule Tab Content -->
+            <div id="scheduleTab" class="tab-content active">
+                <!-- Timer Section -->
+                <div class="timer-section" id="timerSection" style="display: none;">
+                    <div class="timer-header">
+                        <h2>⏱️ Study Timer</h2>
+                        <p>Track your study sessions in real-time</p>
+                    </div>
+
+                    <div class="session-selector">
+                        <h4>Select Current Session:</h4>
+                        <select id="sessionSelect">
+                            <option value="">Choose a session to start...</option>
+                        </select>
+                    </div>
+
+                    <div id="activeTimerDisplay" style="display: none;">
+                        <div class="current-session-info">
+                            <h4 id="currentSessionTitle">Current Session</h4>
+                            <p id="currentSessionDetails">Select a session to begin</p>
+                        </div>
+
+                        <div class="timer-display">
+                            <div class="timer-clock" id="timerClock">00:00:00</div>
+                            <div class="timer-status" id="timerStatus">Ready to start</div>
+                        </div>
+
+                        <div class="timer-controls">
+                            <button class="timer-btn timer-btn-start" id="startBtn" onclick="startTimer()">
+                                ▶️ Start
+                            </button>
+                            <button class="timer-btn timer-btn-pause" id="pauseBtn" onclick="pauseTimer()" disabled>
+                                ⏸️ Pause
+                            </button>
+                            <button class="timer-btn timer-btn-stop" id="stopBtn" onclick="stopTimer()" disabled>
+                                ⏹️ Complete Session
+                            </button>
+                        </div>
+
+                        <div class="timer-stats-mini">
+                            <div class="timer-stat-mini">
+                                <div class="timer-stat-mini-value" id="todaySessionsCount">0</div>
+                                <div class="timer-stat-mini-label">Today's Sessions</div>
+                            </div>
+                            <div class="timer-stat-mini">
+                                <div class="timer-stat-mini-value" id="todayMinutes">0m</div>
+                                <div class="timer-stat-mini-label">Today's Time</div>
+                            </div>
+                            <div class="timer-stat-mini">
+                                <div class="timer-stat-mini-value" id="streakDays">0</div>
+                                <div class="timer-stat-mini-label">Day Streak</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats" id="stats"></div>
+                <div id="scheduleContent"></div>
+            </div>
+
+            <!-- Analytics Tab Content -->
+            <div id="analyticsTab" class="tab-content">
+                <!-- Overall Efficiency Metrics -->
+                <div class="analytics-grid">
+                    <div class="metric-card">
+                        <h4>Overall Efficiency</h4>
+                        <div class="metric-value" id="overallEfficiency">--</div>
+                        <div class="metric-subtitle">Study effectiveness score</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Sessions Completed</h4>
+                        <div class="metric-value" id="sessionsCompleted">0</div>
+                        <div class="metric-subtitle" id="sessionsTotal">of 0 total</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Time Utilization</h4>
+                        <div class="metric-value" id="timeUtilization">--</div>
+                        <div class="metric-subtitle">Hours studied vs planned</div>
+                    </div>
+                    <div class="metric-card">
+                        <h4>Consistency Score</h4>
+                        <div class="metric-value" id="consistencyScore">--</div>
+                        <div class="metric-subtitle">Study habit regularity</div>
+                    </div>
+                </div>
+
+                <!-- Progress Tracking -->
+                <div class="progress-section">
+                    <h3>📈 Study Progress</h3>
+                    <div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="font-weight: 600; color: #333;">Overall Completion</span>
+                            <span style="font-weight: 600; color: #667eea;" id="overallProgressPercent">0%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="overallProgressBar" style="width: 0%;">
+                                <span id="overallProgressText">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="topic-progress" id="topicProgressContainer">
+                        <!-- Topic progress will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Efficiency Analysis -->
+                <div class="progress-section">
+                    <h3>⚡ Efficiency Analysis</h3>
+                    <div id="efficiencyAnalysis">
+                        <!-- Efficiency insights will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="progress-section">
+                    <h3>💡 Smart Recommendations</h3>
+                    <div id="recommendations">
+                        <!-- Recommendations will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Session Log -->
+                <div class="session-log">
+                    <h3 style="margin-bottom: 20px;">📝 Session History</h3>
+                    <div id="sessionLog">
+                        <!-- Session history will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="theme.js" defer></script>
+  <script src="exam_planner.js" defer></script>
+</body>
+</html>
